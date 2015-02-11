@@ -1,7 +1,11 @@
 #!/bin/bash
 #guion para automatizar la instalacion de spotify tras la instalacion de un sistema unix
+#ejecutar como su o con sudo ./<nombre_guion>
 
-sudo add-apt-reposytory "deb http://repository.spotify.com stable non-free"
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
-sudo apt-get update
-sudo apt-get install spotify-client
+#autor Rafael Leyva Ruiz
+#Actualizado: 11/2/15
+
+add-apt-reposytory "deb http://repository.spotify.com stable non-free"
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
+apt-get update
+apt-get install spotify-client
