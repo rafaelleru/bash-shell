@@ -20,6 +20,6 @@ add-apt-repository ppa:webupd8team/java
 apt-get update
 apt-get install oracle-java8-installer
 
-cd /opt/ && sudo tar -zxvf ~/Descargas/eclipse*.tar.gz
+cd /opt/ &&  tar -zxvf ~/Descargas/eclipse*.tar.gz
 
-gedit /usr/share/applications/eclipse.desktop
+gedit /usr/share/applications/eclipse.desktop &
