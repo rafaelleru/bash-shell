@@ -10,6 +10,8 @@ if [[ ! $(whoami) = "root" ]]; then
     exit 1
 fi
 
+mkdir /instalacion && cd instalacion
+
 case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
   "Fedora")
 
@@ -61,22 +63,29 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
     #Instalar wxMaxima
     dnf -y install wxMaxima
   "Ubuntu")
-    #actualizar el sistema
-    apt-get update
+
+    git clone https://github.com/rafaelleru/bash-shell.git
+
+
+    #instalar spotify
+    chmod +x ./bash-shell/installspotify.sh
+    ./bash-shell/installspotify.sh
 
     #instalar gcc para compilar programas en c y c++
     apt-get install gcc
-
-    #instalar spotify
-    wget https://github.com/rafaelleru/bash-shell/guiones/installspotify.sh
-    ./installspotify.sh
 
     #instalar atom
     wget https://atom.io/download/deb
     dpkg -i  atom*.deb
     rm atom*.deb
 
-    #instalar eclipse
-  #  wget http://www.mirrorservice.org/download.php?file=/oomph/epp/mars/R1a/eclipse-inst-linux64.tar.gz&mirror_id=96
+    rm -r ./bash-shell
 
+    #instalar eclipse
+    echo "por favor descarga el paquete eclipse desde la web: 'www.eclipse.org/downloads'"
+    chmod +x ./bash-shell/installeclipse&java.sh
+    ./bash-shell/installeclipse&java.sh
+
+    #borrar los archivos temporales
+    rm -f ./bash-shell
 esac
