@@ -2,7 +2,7 @@
 #https://github.com/rafaelleru
 #licencia GNU
 
-!#/bin/bash
+#!/bin/bash
 
 #el script debe ser ejecutado como root
 if [[ ! $(whoami) = "root" ]]; then
@@ -10,7 +10,7 @@ if [[ ! $(whoami) = "root" ]]; then
     exit 1
 fi
 
-mkdir /instalacion && cd instalacion
+mkdir instalacion && cd instalacion
 
 case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
   "Fedora")
@@ -62,30 +62,60 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
 
     #Instalar wxMaxima
     dnf -y install wxMaxima
+    ;;
   "Ubuntu")
-
-    git clone https://github.com/rafaelleru/bash-shell.git
-
+	
+	#instalar git
+	apt-get install git
+	apt-get -f install 
+    
+	git clone https://github.com/rafaelleru/bash-shell.git
 
     #instalar spotify
-    chmod +x ./bash-shell/installspotify.sh
-    ./bash-shell/installspotify.sh
+    chmod +x ./bash-shell/guiones/installspotify.sh
+    ./bash-shell/guiones/installspotify.sh
 
     #instalar gcc para compilar programas en c y c++
     apt-get install gcc
 
-    #instalar atom
+    instalar atom
     wget https://atom.io/download/deb
-    dpkg -i  atom*.deb
-    rm atom*.deb
-
-    rm -r ./bash-shell
+    dpkg -i  deb
+    rm deb
 
     #instalar eclipse
     echo "por favor descarga el paquete eclipse desde la web: 'www.eclipse.org/downloads'"
-    chmod +x ./bash-shell/installeclipse&java.sh
-    ./bash-shell/installeclipse&java.sh
 
     #borrar los archivos temporales
-    rm -f ./bash-shell
+    rmdir --ignore-fail-on-non-empty ./bash-shell
+    ;;
+
+  "Linux")
+	
+	#instalar git
+	apt-get install git
+	apt-get -f install 
+    
+	git clone https://github.com/rafaelleru/bash-shell.git
+
+    #instalar spotify
+    chmod +x ./bash-shell/guiones/installspotify.sh
+    ./bash-shell/guiones/installspotify.sh
+
+    #instalar gcc para compilar programas en c y c++
+    apt-get install gcc
+
+    instalar atom
+    wget https://atom.io/download/deb
+    dpkg -i  deb
+    rm deb
+
+    #instalar eclipse
+    echo "por favor descarga el paquete eclipse desde la web: 'www.eclipse.org/downloads'"
+ 
+    #borrar los archivos temporales
+    rmdir --ignore-fail-on-non-empty ./bash-shell
+    ;;
 esac
+
+rmdir instalacion
