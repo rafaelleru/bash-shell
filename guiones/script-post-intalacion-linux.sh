@@ -63,12 +63,13 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
     #Instalar wxMaxima
     dnf -y install wxMaxima
     ;;
-  "Ubuntu")
-	
+
+  ("Linux" | "ubuntu"))
+
 	#instalar git
 	apt-get install git
-	apt-get -f install 
-    
+	apt-get -f install
+
 	git clone https://github.com/rafaelleru/bash-shell.git
 
     #instalar spotify
@@ -85,37 +86,16 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
 
     #instalar eclipse
     echo "por favor descarga el paquete eclipse desde la web: 'www.eclipse.org/downloads'"
+    mirror=$(curl "https://www.eclipse.org/downloads/download.php?file=/oomph/epp/mars/R1a/eclipse-inst-linux64.tar.gz" | egrep -o -m1 'mirror_id=[0-9]+"' | cut -d"=" -f2 | cut -d "\"" -f1)
+    url=$(curl "https://www.eclipse.org/downloads/download.php?file=/oomph/epp/mars/R1a/eclipse-inst-linux64.tar.gz&mirror_id=$mirror"  | egrep -o 'URL=[^"]+' | cut -d"=" -f 2 | cut -d "\"" -f1)
+    wget $url
 
-    #borrar los archivos temporales
-    rmdir --ignore-fail-on-non-empty ./bash-shell
-    ;;
+    tar -xvzf eclipse*.tar.gz
+    ./eclipse-installer/eclipse-inst
 
-  "Linux")
-	
-	#instalar git
-	apt-get install git
-	apt-get -f install 
-    
-	git clone https://github.com/rafaelleru/bash-shell.git
-
-    #instalar spotify
-    chmod +x ./bash-shell/guiones/installspotify.sh
-    ./bash-shell/guiones/installspotify.sh
-
-    #instalar gcc para compilar programas en c y c++
-    apt-get install gcc
-
-    instalar atom
-    wget https://atom.io/download/deb
-    dpkg -i  deb
-    rm deb
-
-    #instalar eclipse
-    echo "por favor descarga el paquete eclipse desde la web: 'www.eclipse.org/downloads'"
- 
     #borrar los archivos temporales
     rmdir --ignore-fail-on-non-empty ./bash-shell
     ;;
 esac
 
-rmdir instalacion
+rm -rf instalacion
