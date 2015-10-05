@@ -8,4 +8,4 @@
 add-apt-repository "deb http://repository.spotify.com stable non-free"
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
 apt-get update
-apt-get install spotify-client
+apt-get -y install spotify-client
