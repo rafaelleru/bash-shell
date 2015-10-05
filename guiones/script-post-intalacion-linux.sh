@@ -57,7 +57,9 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
 
     #por si hay un doble icono de chrome
     mv -f /usr/share/applications/google-chrome.desktop /usr/share/applications/google-chrome-stable.desktop
+
+    #Instalar wxMaxima
+    dnf -y install wxMaxima
   "Ubuntu")
 
-    
 esac
