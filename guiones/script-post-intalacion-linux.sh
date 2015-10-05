@@ -61,5 +61,22 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
     #Instalar wxMaxima
     dnf -y install wxMaxima
   "Ubuntu")
+    #actualizar el sistema
+    apt-get update
+
+    #instalar gcc para compilar programas en c y c++
+    apt-get install gcc
+
+    #instalar spotify
+    wget https://github.com/rafaelleru/bash-shell/guiones/installspotify.sh
+    ./installspotify.sh
+
+    #instalar atom
+    wget https://atom.io/download/deb
+    dpkg -i  atom*.deb
+    rm atom*.deb
+
+    #instalar eclipse
+  #  wget http://www.mirrorservice.org/download.php?file=/oomph/epp/mars/R1a/eclipse-inst-linux64.tar.gz&mirror_id=96
 
 esac
