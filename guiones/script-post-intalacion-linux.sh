@@ -18,7 +18,7 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
     #Instala todos los programas basicos tras la instalacion de Fedora 22
 
     #Primero hace un update completo del sistema
-    dnf update
+    dnf -y update
 
     #ahora instalamos fedy
     bash -c "curl http://folkswithhats.org/fedy-installer -o fedy-installer && chmod +x fedy-installer && ./fedy-installer"
