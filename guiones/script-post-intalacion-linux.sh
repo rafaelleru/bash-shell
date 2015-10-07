@@ -64,7 +64,7 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
     dnf -y install wxMaxima
     ;;
 
-  ("Linux" | "ubuntu"))
+  ''"Linux" | "ubuntu"'')
 
 	#instalar git
 	apt-get install git
