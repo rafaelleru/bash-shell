@@ -20,7 +20,7 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
     #Primero hace un update completo del sistema
     dnf -y update
 
-    #ahora instalamos fedy
+    #ahora instalamos fedy #no funciona en fedora 23
     bash -c "curl http://folkswithhats.org/fedy-installer -o fedy-installer && chmod +x fedy-installer && ./fedy-installer"
 
     #ahora procedemos a instalar el cliente de spotify para fedora
@@ -30,6 +30,7 @@ case $(cut -d ' ' -f 1 /etc/issue | head -n 1) in
     wget -P /etc/yum.repos.d/ https://raw.github.com/kuboosoft/postinstallerf/master/postinstallerf.repo
     #instalamos el cliente
     dnf -y install spotify-client
+    mv /usr/share/applications/spotify.desktop /usr/share/applications/Spotify.desktop
 
     #instalamos atom, un editor de texto mas completo que gedit
     wget https://github.com/atom/atom/releases/tag/v1.0.19/atom.x86_64.rpm
